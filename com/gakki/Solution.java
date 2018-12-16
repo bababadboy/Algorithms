@@ -19,16 +19,19 @@ public class Solution {
 
         for (int i = 0; i < s.length(); i++){
             if (!hashMap.containsKey(s.charAt(i))){ // 不包含重复的键
-                hashMap.put(s.charAt(i),i);
                 if (i - head + 1 > len) {
                     len = i - head + 1;
                 }
 
             }
             else { // 出现了重复字符
-                head = hashMap.get(s.charAt(i)) + 1; // 获得重复字符的位置 + 1
-                hashMap.put(s.charAt(i),i);
+                head = Math.max(hashMap.get(s.charAt(i)) + 1,head); //
+
+                if (i - head + 1 > len) {
+                    len = i - head + 1;
+                }
             }
+            hashMap.put(s.charAt(i),i);
         }
         return len;
     }
