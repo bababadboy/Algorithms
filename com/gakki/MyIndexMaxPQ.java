@@ -62,12 +62,12 @@ public class MyIndexMaxPQ<Key extends Comparable<Key>> {
      */
     public int delMax(){
         int maxIndex = pq[1];
-        exch(1,N);
-        pq[N] = -1;
-        qp[maxIndex] = -1;
+        exch(1,N--);
         sink(1);
+
+        pq[maxIndex] = -1;
         keys[maxIndex] = null;
-        N--;
+        qp[N+1] = -1;
         return maxIndex;
     }
 
@@ -104,7 +104,7 @@ public class MyIndexMaxPQ<Key extends Comparable<Key>> {
     public void print(){
         for (int i :
                 pq) {
-            if (i == 0) continue;
+            if (i == 0 || i == -1) continue;
             System.out.print(keys[i]+"\t");
         }
     }
@@ -147,6 +147,10 @@ public class MyIndexMaxPQ<Key extends Comparable<Key>> {
             pq.insert(i+1, strings[i]);
         }
 
+        pq.print();
+        System.out.println("\n========================================\n");
+        // 删除队首
+        pq.delMax();
         pq.print();
 
     }
