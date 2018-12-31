@@ -21,6 +21,19 @@ public class MaxPQ<Key extends Comparable<Key>>{
         pq = (Key[])new Comparable[max+1];
     }
 
+    /**
+     * 接受一个数组的构造函数
+     */
+    @SuppressWarnings(value = "unchecked")
+    public MaxPQ(Key[] keys){
+        pq = (Key[]) new Comparable[keys.length+1];
+        for (Key item:
+             keys) {
+            pq[++ N] = item;
+            swim(N);
+        }
+    }
+
     public boolean isEmpty() {
         return N==0;
     }
@@ -40,13 +53,16 @@ public class MaxPQ<Key extends Comparable<Key>>{
     public void insert(Key key) {
         pq[++ N] = key;
         swim(N);
-
     }
-    // 打印输出
+
+    /**
+     * 打印输出
+     */
     public void print(){
         for (int i = 1; i <= N; i++){
             System.out.print(pq[i]+"\t");
         }
+        System.out.println();
     }
 
     private void sink(int k) {
