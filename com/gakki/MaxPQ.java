@@ -1,6 +1,5 @@
 package com.gakki;
 
-import java.io.Serializable;
 
 
 /**
@@ -12,6 +11,9 @@ public class MaxPQ<Key extends Comparable<Key>>{
     private int N = 0;
 
     private Key[] pq;
+
+    public MaxPQ() {
+    }
 
     /**
      * SuppressWarnings注解可以消除强制类型转换的警告
@@ -42,12 +44,25 @@ public class MaxPQ<Key extends Comparable<Key>>{
         return N;
     }
 
+    /**
+     * 返回队列的最大元素,不删除。
+     * @return 最大元素
+     */
+    public Key max(){
+        return pq[1];
+    }
+
+    /**
+     * 返回队列的最大元素，并删除
+     * @return 最大元素
+     */
     public Key delMax() {
+        Key max = pq[1];
         exch(N,1);
         // 避免孤儿对象
         pq[N --] = null;
         sink(1);
-        return pq[1];
+        return max;
     }
 
     public void insert(Key key) {
