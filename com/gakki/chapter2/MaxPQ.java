@@ -1,4 +1,4 @@
-package com.gakki;
+package com.gakki.chapter2;
 
 
 

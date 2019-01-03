@@ -1,4 +1,4 @@
-package com.gakki;
+package com.gakki.chapter2;
 
 /**
  * 关联索引的最大优先队列
