@@ -5,21 +5,83 @@ package com.gakki.chapter3;
  */
 public class BST<Key extends Comparable<Key>,Value> {
 
-    private Node root;          // 根节点
+    private Node root;          // 二叉查找树的根节点
 
     private class Node{
         private Key key;        // 键
         private Value val;      // 值
-        private int N;          // 子树节点个数
+        private int N;          // 以该节点为根的子树节点总数（包括根节点）
         private Node left,right;// 左右节点
+
+        public Node(Key key, Value val, int n) {
+            this.key = key;
+            this.val = val;
+            N = n;
+        }
     }
+
+    /**
+     * 返回根节点的值
+     * @return {@code root}
+     */
+    private Value get(){
+        return root.val;
+    }
+
 
     /*接口定义*/
 
-    public int size(){}
-    public int size(Node x){}
-    public Value get(Key key){}
-    private void put(Key key,Value val){}
+    public int size(){
+        return root.N;
+    }
+
+    /**
+     *  返回子树节点个数
+     * @param x 指定节点
+     * @return 子树个数
+     */
+    public int size(Node x){
+        if (x == null)          // 避免空指针异常
+            return 0;
+        else return x.N;
+    }
+
+    public Value get(Node x,Key key){
+        // 从{@code x}节点开始向下查找
+        int cmp = key.compareTo(root.key);
+        if (x == null)
+            return null;
+        if ( cmp > 0)
+            return get(x.right,key);
+        if (cmp < 0)
+            return get(x.left,key);
+        else
+            return x.val;
+    }
+
+    public void put(Key key,Value val){
+        // 查找key，若找到则更新，否则插入新节点
+
+    }
+
+    private Node put(Node x, Key key, Value val){
+        if (x == null) throw new IllegalArgumentException();
+        int cmp = key.compareTo(x.key);
+        if (cmp < 0){
+            if (x.N == 0){
+                // 找到叶子节点，说明没找到一样的key
+                x.left = new Node(key,val,0);
+                x.N++;
+            }
+            return put(x.left,key,val);
+
+        }
+        else if (cmp > 0)
+            return put(x.right, key,val);
+        else
+            x.val = val;
+    }
+
 
     public Value max(){}
     public Value min(){}
