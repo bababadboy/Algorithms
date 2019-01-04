@@ -65,21 +65,23 @@ public class BST<Key extends Comparable<Key>,Value> {
     }
 
     private Node put(Node x, Key key, Value val){
-        if (x == null) throw new IllegalArgumentException();
+        // 从Node x 开始put
+        // 如果存在key,在更新key所在节点的val
+        // 否则新建一个叶子节点
+        if (x == null) return new Node(key,val,1);
         int cmp = key.compareTo(x.key);
         if (cmp < 0){
-            if (x.N == 0){
-                // 找到叶子节点，说明没找到一样的key
-                x.left = new Node(key,val,0);
-                x.N++;
-            }
             return put(x.left,key,val);
-
         }
-        else if (cmp > 0)
-            return put(x.right, key,val);
-        else
+        else if (cmp > 0){
+            return put(x.right,key,val);
+        }
+        else{
             x.val = val;
+        }
+        // 更新子树的节点个数
+        x.N = x.left.N + x.right.N + 1;
+        return x;
     }
 
 
