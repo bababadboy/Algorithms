@@ -26,8 +26,6 @@ public class Shell {
     public static void main(String[] args) {
         String s[] = {"S","H","E","L","L","S","O","R","T","E","X","A","M","P","L","E"};
         sort(s);
-        for (int i = 0; i < s.length; i ++){
-            System.out.print(s[i]);
-        }
+        print(s);
     }
 }

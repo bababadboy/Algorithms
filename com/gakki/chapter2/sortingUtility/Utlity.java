@@ -12,4 +12,12 @@ public class Utlity {
         a[i] = a[j];
         a[j] = tmp;
     }
+
+    public static void print(Comparable[] a) {
+        if (a.length == 0) return;
+        for (int i = 0 ; i < a.length; i ++){
+            System.out.print(a[i]+"\t");
+        }
+
+    }
 }
