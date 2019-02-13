@@ -33,7 +33,7 @@ public class Merge {
     }
     private static void sort(Comparable[] a,int lo,int hi){
         int mid = lo + (hi - lo) / 2;
-        
+        if (lo > hi) return;
         // 递归调用
         sort(a,lo,mid); // 归并左边
         sort(a,mid+1,hi); //归并右边
