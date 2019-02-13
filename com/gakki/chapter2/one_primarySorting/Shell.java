@@ -1,5 +1,8 @@
 package com.gakki.chapter2.one_primarySorting;
 
+
+import static com.gakki.chapter2.sortingUtility.Utlity.*;
+
 /**
  * @author wangxiaobin
  * 希尔排序对h序列的排序方式采用了Exch的插入（冒泡）方法，可以优化成"整体后移法"
@@ -18,14 +21,6 @@ public class Shell {
             h = h /3;
         }
 
-    }
-    private static boolean less(Comparable[] a, int i, int j){
-        return a[i].compareTo(a[j]) < 0;
-    }
-    private static void exch(Comparable[] a, int i, int j) {
-        Comparable tmp = a[i];
-        a[i] = a[j];
-        a[j] = tmp;
     }
 
     public static void main(String[] args) {
