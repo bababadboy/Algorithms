@@ -1,4 +1,4 @@
-package com.gakki.chapter2.one_primarySorting;
+package com.gakki.chapter2.p1_primarySorting;
 
 
 import static com.gakki.chapter2.sortingUtility.Utlity.*;
