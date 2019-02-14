@@ -20,6 +20,7 @@ public class Util {
              ) {
             System.out.print(item + "\t");
         }
+        System.out.println();
 
     }
 

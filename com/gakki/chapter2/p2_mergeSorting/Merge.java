@@ -1,5 +1,5 @@
 package com.gakki.chapter2.p2_mergeSorting;
-import static com.gakki.chapter2.sortingUtility.Utlity.*;
+import static com.gakki.chapter2.sortingUtility.Util.*;
 
 
 /**
