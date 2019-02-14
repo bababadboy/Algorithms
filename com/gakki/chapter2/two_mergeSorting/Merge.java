@@ -35,8 +35,10 @@ public class Merge {
         if (hi <= lo) return;       // 等号必须要加上去
         int mid = lo + (hi - lo) / 2;
         // 递归调用
-        sort(a,lo,mid); // 归并左边
-        sort(a,mid+1,hi); //归并右边
+        sort(a,lo,mid); // 左边排序
+        sort(a,mid+1,hi); // 右边排序
+        if (less(a,mid,mid+1))    // 若左半边小于右半边，则无需再merge
+            return;
         merge(a,lo,mid,hi);
     }
 
