@@ -1,4 +1,4 @@
-package com.gakki.chapter2;
+package com.gakki.chapter2.p4_prioQue;
 
 /**
  * @author wangxiaobin

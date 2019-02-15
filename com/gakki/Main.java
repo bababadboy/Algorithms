@@ -1,6 +1,6 @@
 package com.gakki;
 
-import com.gakki.chapter2.MaxPQ;
+import com.gakki.chapter2.p4_prioQue.MaxPQ;
 
 public class Main {
 

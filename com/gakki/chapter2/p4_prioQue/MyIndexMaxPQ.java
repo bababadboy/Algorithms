@@ -1,4 +1,4 @@
-package com.gakki.chapter2;
+package com.gakki.chapter2.p4_prioQue;
 
 /**
  * 关联索引的最大优先队列
