@@ -9,10 +9,11 @@ package com.gakki.chapter2.p4_prioQue;
 public class MaxPQ<Key extends Comparable<Key>>{
     // 第零个元素不使用
     private int N = 0;
-
+    private int max = 1;
     private Key[] pq;
 
     public MaxPQ() {
+        pq = (Key[])new Comparable[max+1];
     }
 
     /**
@@ -57,15 +58,23 @@ public class MaxPQ<Key extends Comparable<Key>>{
      * @return 最大元素
      */
     public Key delMax() {
-        Key max = pq[1];
+        Key maxKey = pq[1];
         exch(N,1);
         // 避免孤儿对象
         pq[N --] = null;
         sink(1);
-        return max;
+
+        /*修改数组大小*/
+        if (N <= max/4) {
+            resize(max/2);
+        }
+        return maxKey;
     }
 
     public void insert(Key key) {
+        if (N+1 > max/2) {
+            resize(2*max);
+        }
         pq[++ N] = key;
         swim(N);
     }
@@ -78,6 +87,21 @@ public class MaxPQ<Key extends Comparable<Key>>{
             System.out.print(pq[i]+"\t");
         }
         System.out.println();
+    }
+
+    /**
+     * 把旧的qp移动到大小为 s 的新数组
+     * @param s 重新设定的大小
+     * @return 新的Key数组
+     */
+    @SuppressWarnings(value = "unchecked")
+    private void resize(int s) {
+        Key[] temp = (Key[])new Comparable[s+1];
+        for (int i = 0; i <= N; ++i) {
+            temp[i] = pq[i];
+        }
+        pq = temp;
+        max = s;
     }
 
     private void sink(int k) {
