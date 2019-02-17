@@ -18,7 +18,7 @@ public class Heap {
 
         // step2. "删除"最大元素（与第一个元素交换），减少下沉范围 k = k - 1
         while (N >= 1) {
-            exch(a,1,N--);
+            exch2(a,1,N--);
             sink(a,1,N);
         }
     }
@@ -33,12 +33,12 @@ public class Heap {
         while (2 * i <= k) {
             int j = 2 * i;
             // 确定左孩子和右孩子的大小
-            if (j < k && less(a,j,j+1)) {
+            if (j < k && less2(a,j,j+1)) {
                 j ++;
             }
             // 和确定了的孩子交换
-            if (less(a,i,j)) {
-                exch(a,j,i);
+            if (less2(a,i,j)) {
+                exch2(a,j,i);
             }
             i = j;
         }

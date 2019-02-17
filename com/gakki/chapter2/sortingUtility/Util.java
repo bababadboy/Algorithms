@@ -8,12 +8,27 @@ public class Util {
     public static boolean less(Comparable[] a, int i, int j){
         return a[i].compareTo(a[j]) < 0;
     }
+
+    /**
+     * 堆排序时使用
+     */
+    public static boolean less2(Comparable[] a, int i, int j){
+        return a[i-1].compareTo(a[j-1]) < 0;
+    }
     public static void exch(Comparable[] a, int i, int j) {
         Comparable tmp = a[i];
         a[i] = a[j];
         a[j] = tmp;
     }
 
+    /**
+     * 堆排序时使用
+     */
+    public static void exch2(Comparable[] a, int i, int j) {
+        Comparable tmp = a[i-1];
+        a[i-1] = a[j-1];
+        a[j-1] = tmp;
+    }
     public static void print(Comparable[] a) {
         if (a.length == 0) return;
         for (Comparable item:a
