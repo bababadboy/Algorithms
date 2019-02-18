@@ -1,9 +1,16 @@
 package com.gakki.chapter3.p1_ST;
 
+import com.gakki.chapter2.p4_prioQue.MaxPQ;
+
+import java.util.Iterator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
+ * 顺序查找（基于有序链表）
  * @author wangxiaobin
  */
-public class SequentialSearchST<Key extends Comparable<Key>,Value> {
+public class SequentialSearchST<Key extends Comparable<Key>,Value>{
     private Node head;
     private int length;
     private class Node{
@@ -19,7 +26,12 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value> {
     }
 
     public Iterable<Key> keys() {
-        // todo
+        Queue<Key> queue = new PriorityQueue<>();   // 使用java.util中的优先队列
+        Node p = head.next;
+        while (p != null) {
+            queue.add(p.key);
+        }
+        return queue;
     }
 
     public boolean contains(Key k) {
