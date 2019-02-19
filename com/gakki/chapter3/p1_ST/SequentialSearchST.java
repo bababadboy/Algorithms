@@ -1,6 +1,7 @@
 package com.gakki.chapter3.p1_ST;
 
 import com.gakki.chapter2.p4_prioQue.MaxPQ;
+import edu.princeton.cs.algs4.In;
 
 import java.util.Iterator;
 import java.util.PriorityQueue;
@@ -10,10 +11,11 @@ import java.util.Queue;
  * 顺序查找（基于无序链表）
  * @author wangxiaobin
  */
-public class SequentialSearchST<Key extends Comparable<Key>,Value>{
+public class SequentialSearchST<Key extends Comparable<Key>,Value> {
     private Node head;  // 第一个节点
     private int length;
-    private class Node{
+
+    private class Node {
         Key key;
         Value val;
         Node next;
@@ -23,9 +25,11 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value>{
         head = null;
         length = 0;
     }
-    public int size(){
+
+    public int size() {
         return length;
     }
+
     public Iterable<Key> keys() {
         Queue<Key> queue = new PriorityQueue<>();   // 使用java.util中的优先队列
         Node p = head;
@@ -34,6 +38,52 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value>{
             p = p.next;
         }
         return queue;
+    }
+
+    public void print(){
+        Node p = head;
+        if (length == 0) {
+            System.out.println("NULL");
+        }
+        while (p != null) {
+            System.out.println(p.key+"->"+p.val);
+            p = p.next;
+        }
+    }
+
+    public void delete(Key k) {
+        Node p = head;
+        if (p == null) {
+            // 空链表直接返回
+            return;
+        }
+        if (length == 1) {
+            // 只有一个节点
+            if (p.key.equals(k)) {
+                head = null;
+                --length;
+                return;
+            }
+        }
+        // 删除处于链中的节点
+        Node q = p.next;
+        while (q != null) {
+            if (q.key.equals(k)) {
+                p.next = q.next;
+                --length;
+                return;
+            }
+            // p,q指针都向后移
+            p = p.next;
+            q = p.next;
+        }
+        // 删除处于链尾的节点(包含只剩一个节点的链表)
+        // 此时p指向链尾
+        if (p.key.equals(k)) {
+            p.next = null;
+            --length;
+        }
+
     }
 
     public boolean contains(Key k) {
@@ -62,7 +112,7 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value>{
         return val;
     }
 
-    public void put(Key k, Value v){
+    public void put(Key k, Value v) {
         // 如果有相同的key，则更新val
         Node p = head;
         while (p != null) {
@@ -80,10 +130,35 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value>{
         n.next = head;
         head = n;
         // 更新长度
-        ++ length;
+        ++length;
     }
-    private boolean less(Key k1,Key k2) {
+
+    private boolean less(Key k1, Key k2) {
         return k1.compareTo(k2) < 0;
+    }
+
+    public static void main(String[] args) {
+        SequentialSearchST<String,Integer> st = new SequentialSearchST<>();
+        st.put("a",1);
+        st.print();
+//        st.put("b",2);
+//        st.print();
+//        st.put("c",3);
+//        st.print();
+//
+//        st.put("b",4);
+//        st.print();
+
+//        st.delete("a");
+//        st.print();
+
+        st.delete("a");
+        st.print();
+//
+//        st.delete("b");
+//        st.print();
+
+
     }
 
 }
