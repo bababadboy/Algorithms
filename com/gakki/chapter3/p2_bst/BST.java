@@ -1,4 +1,4 @@
-package com.gakki.chapter3;
+package com.gakki.chapter3.p2_bst;
 
 /**
  * @author wangxiaobin
@@ -18,6 +18,13 @@ public class BST<Key extends Comparable<Key>,Value> {
             this.val = val;
             N = n;
         }
+    }
+
+    /**
+     * 无参数构造函数
+     */
+    public BST(){
+
     }
 
     /**
@@ -61,7 +68,7 @@ public class BST<Key extends Comparable<Key>,Value> {
 
     public void put(Key key,Value val){
         // 查找key，若找到则更新，否则插入新节点
-
+        put(root,key,val);
     }
 
     private Node put(Node x, Key key, Value val){
@@ -84,14 +91,21 @@ public class BST<Key extends Comparable<Key>,Value> {
         return x;
     }
 
-
-    public Value max(){}
-    public Value min(){}
-    public Value floor(){}
-    public Value ceiling(){}
-    public int rank(){}
-    public Value select(){}
-
+// todo
+//    public Key max(){}  // ojbk了
+//    public Key min(){}  // 同上
+//    public Value floor(){// 向下取整 }    // ojbk了
+//    public Value ceiling(){// 向上取整}  // 同上
+//    public int rank(){}   // ojbk
+//    public Value select(){}   // 同上 逆操作
+//    public void delMax(){}    // ojbk
+//    public void delMin(){}    // 同上
+//    public void delete(Key k) {}  //
+//    public void print() {// 遍历}
+//    public Iterable<Key> keys(Key lo, Key hi){}
+//    public Iterable<Key> keys(){
+//        return keys(min,max);
+//    }
 
 
 
