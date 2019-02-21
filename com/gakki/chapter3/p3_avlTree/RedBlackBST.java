@@ -12,7 +12,7 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         Key key;
         Value val;
         Node left,right;
-        int N;      // 以这个节点为根节点的子节点个个数：节点计数器
+        int N;      // 节点计数器
         private boolean color;  // 指向该节点的链接颜色
 
         Node(Key key, Value val,int N,boolean color) {
@@ -35,7 +35,9 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         return size(root);
     }
     private int size(Node h){
-        return h.left.N + h.right.N + 1;
+        if (h == null)
+            return 0;
+        return h.N;
     }
 
     private Node put(Node h,Key k,Value v){
@@ -47,11 +49,11 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         int cmp = k.compareTo(h.key);
         if (cmp < 0){
             // 插入的更小
-            h =  put(h.left,k,v);
+            h.left =  put(h.left,k,v);
         }
         else if (cmp > 0){
             // 插入的更大
-            h =  put(h.right,k,v);
+            h.right =  put(h.right,k,v);
         }
         else{ // 若key相等，则更新val
             h.val = v;
