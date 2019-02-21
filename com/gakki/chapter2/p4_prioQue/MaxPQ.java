@@ -1,12 +1,13 @@
 package com.gakki.chapter2.p4_prioQue;
 
 
+import java.util.Queue;
 
 /**
  * 基于堆(数组存储)的优先队列
  * @author wangxiaobin
  */
-public class MaxPQ<Key extends Comparable<Key>>{
+public class MaxPQ<Key extends Comparable<Key>> {
     // 第零个元素不使用
     private int N = 0;
     private int max = 1;
@@ -89,6 +90,21 @@ public class MaxPQ<Key extends Comparable<Key>>{
         System.out.println();
     }
 
+    public void treePrint() {
+        String tab = "\t";  // 间隔
+        int level = (int)(Math.log(N)/Math.log(2))+1;      // 层数log2(N)=log(N)/log(2)
+//        System.out.print("层数是："+Math.log(N)/Math.log(2));
+        int[] pre = new int[level];        // 每层第一个元素前空的间隔数，pre[0]->第一层第一个元素前的间隔数
+        // 对pre进行赋值
+        for (int i = level-1; i >= 0; i --) {
+            for (int j = 1; j <= level; j ++) {
+                pre[i] = 2 * (j - 1);
+            }
+        }
+
+        for (int i = 1; i <= N; i ++) {
+        }
+    }
     /**
      * 把旧的qp移动到大小为 s 的新数组
      * @param s 重新设定的大小

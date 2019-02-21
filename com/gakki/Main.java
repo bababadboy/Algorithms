@@ -5,9 +5,8 @@ import com.gakki.chapter2.p4_prioQue.MaxPQ;
 public class Main {
 
     public static void main(String[] args) {
-        /* 给定大小构造函数 */
         int size = 10;
-        MaxPQ<Integer> maxPQ = new MaxPQ<>(size);
+        MaxPQ<Integer> maxPQ = new MaxPQ<>();
         for (int i = 0; i < size; i++) {
             maxPQ.insert(i);
         }

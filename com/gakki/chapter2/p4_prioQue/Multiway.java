@@ -5,5 +5,15 @@ package com.gakki.chapter2.p4_prioQue;
  * @author wangxiaobin
  */
 public class Multiway {
-
+//    public void merge(In[] streams){
+//
+//        MyIndexMaxPQ<String> pq = new MyIndexMaxPQ<>()
+//    }
+//
+//    public static void main(String[] args) {
+//        int N = args.length;
+//        for (int i = 0; i < N; i ++) {
+//
+//        }
+//    }
 }
