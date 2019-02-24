@@ -1,10 +1,10 @@
 package com.gakki.chapter3.p3_avlTree;
 
 /**
- * 红黑树
+ * 左倾红黑树（LEFT-LEANING RED-BLACK BST）
  * @author wangxiaobin
  */
-public class RedBlackBST<Key extends Comparable<Key>,Value> {
+public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
     private Node root;  // 根节点
     private static final boolean RED = true;
     private static final boolean BLACK = false;
@@ -21,6 +21,29 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
             this.N = N;
             this.color = color;
         }
+    }
+
+    /**
+     * 查找
+     * @param k 查找的键
+     * @return 返回{@Key}k对应的值
+     */
+    public Value get(Key k) {
+        // 代码和BST的查找一模一样,使用非递归实现
+        Node x = root;
+        while (x != null) {
+            int cmp = k.compareTo(x.key);
+            if (cmp < 0) {
+                x = x.left;
+            }
+            else if (cmp > 0) {
+                x = x.right;
+            }
+            else {
+                return x.val;
+            }
+        }
+        return null;
     }
 
     /**
@@ -111,12 +134,20 @@ public class RedBlackBST<Key extends Comparable<Key>,Value> {
         h.right.color = BLACK;
         h.color = RED;
     }
+
+
+    public void delete(Key k) {
+
+    }
+
     public static void main(String[] args) {
-        RedBlackBST<String ,Integer> bst = new RedBlackBST<>();
+        LeftLeaningRedBlackBST<String ,Integer> bst = new LeftLeaningRedBlackBST<>();
         bst.put("a",1);
         bst.put("b",2);
-//        bst.put("d",3);
-//        bst.put("b",4);
+        bst.put("d",3);
+        bst.put("b",4);
+        System.out.println(bst.get("b"));
+        System.out.println(bst.get("a"));
 
     }
 }
