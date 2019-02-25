@@ -1,7 +1,7 @@
 package com.gakki.chapter3.p3_avlTree;
 
 /**
- * 左倾红黑树（LEFT-LEANING RED-BLACK BST）
+ * 左倾红黑树（LEFT-LEANING RED-BLACK BST，2-3树的代码实现）
  * @author wangxiaobin
  */
 public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
@@ -45,6 +45,17 @@ public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
         }
         return null;
     }
+    public Value getMax() {
+        if (root == null) {
+            // 空树
+            return null;
+        }
+        Node x = root;
+        while (x.right != null) {
+            x = x.right;
+        }
+        return x.val;
+    }
 
     /**
      * 插入节点，如果存在相同的键，则更新；否则创建新节点。
@@ -86,9 +97,9 @@ public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
         boolean b = !isRED(h.left);
         if (isRED(h.right) && !isRED(h.left))           // 如果只有右子链接为红
             h = rotateLeft(h);
-        else if (isRED(h.left) && isRED(h.left.left))   // 连续两个左子链接为红
+        if (isRED(h.left) && isRED(h.left.left))   // 连续两个左子链接为红
             h =  rotateRight(h);
-        else                                            // 左右子节点均为红
+        if (isRED(h.left) && isRED(h.right))                                           // 左右子节点均为红
             flipColors(h);
         h.N = size(h.left) + size(h.right) +1;  // 更新节点计数器
         return h;
@@ -140,14 +151,85 @@ public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
 
     }
 
+    /**
+     * 删除树中的最大键
+     */
+    public void deleteMax() {
+        // 最大值一定是在树的右子树的最底部
+        // 返回根节点
+        root = deleteMax(root);
+        if (root != null) {
+            root.color = BLACK;
+        }
+
+    }
+    private Node deleteMax(Node h) {
+        if (isRED(h.left)) {
+            // 把左倾三节点改成右倾三节点(改了之后对应的2-3树是一样的)，为什么要改呢？//todo 解释此处修改的原因
+            h = rotateRight(h);
+        }
+        if (h.right == null) {
+            // →_→最右最底层的节点
+            return null;
+        }
+        // borrow from sibling if necessary
+        if (!isRED(h.right) && !isRED(h.right.left))
+        {
+            // 如果该节点是2节点，需要从兄弟节点借
+            h = moveRedRight(h);
+        }
+        // move down one level
+        h.right = deleteMax(h.right);
+        return fixUp(h);
+    }
+
+    /**
+     * 把兄弟节点（非2-节点，即h.right）的最大节点转移到h，h转移到 h.right。
+     * @param h 父节点
+     * @return h
+     */
+    private Node moveRedRight(Node h) {
+        colorFlip(h);   // 使用"删除操作colorFilp"而非插入操作的"flipColors"
+        if (isRED(h.left.left)) {
+            // 如果h.left(即兄弟节点)不是2-节点
+            h  = rotateRight(h);
+            colorFlip(h);
+        }
+        return h;
+    }
+    // 删除操作的修改颜色，和插入操作相反
+    private void colorFlip(Node h) {
+        h.color = RED;
+        h.left.color = BLACK;
+        h.right.color = BLACK;
+    }
+    private Node fixUp(Node h) {
+        // 自底向上修复左倾红黑树
+        if (isRED(h.right)) {
+            // 三节点右倾（红链接在右边）
+            h = rotateLeft(h);
+        }
+        if (isRED(h.left) && isRED(h.left.left)) {
+            // 出现四节点
+            rotateRight(h);
+        }
+        if (isRED(h.left) && isRED(h.right)) {
+            // 左右子节点均为红链接（四节点），则转为两个2-节点一个父节点
+            flipColors(h);
+        }
+        return h;
+    }
+
     public static void main(String[] args) {
         LeftLeaningRedBlackBST<String ,Integer> bst = new LeftLeaningRedBlackBST<>();
-        bst.put("a",1);
-        bst.put("b",2);
-        bst.put("d",3);
-        bst.put("b",4);
-        System.out.println(bst.get("b"));
-        System.out.println(bst.get("a"));
+        bst.put("M",1);
+        bst.put("F",2);
+        bst.put("A",3);
+        bst.put("S",4);
+
+        System.out.println(bst.getMax());
+        bst.deleteMax();
+        System.out.println(bst.getMax());
 
     }
 }
