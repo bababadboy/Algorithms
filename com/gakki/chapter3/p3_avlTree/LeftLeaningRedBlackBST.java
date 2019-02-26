@@ -179,6 +179,9 @@ public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
             h = moveRedRight(h);
         }
         // move down one level
+        // http://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf中写的是
+        // h.left = deleteMax(h.left);
+        // todo 是不是权威错了
         h.right = deleteMax(h.right);
         return fixUp(h);
     }
@@ -189,12 +192,13 @@ public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
      * @return h
      */
     private Node moveRedRight(Node h) {
-        colorFlip(h);   // 使用"删除操作colorFilp"而非插入操作的"flipColors"
+        colorFlip(h);// 合并父节点和左右子节点为一个四节点
         if (isRED(h.left.left)) {
             // 如果h.left(即兄弟节点)不是2-节点
             h  = rotateRight(h);
             colorFlip(h);
         }
+        // else否则直接合并、返回h
         return h;
     }
     // 删除操作的修改颜色，和插入操作相反
