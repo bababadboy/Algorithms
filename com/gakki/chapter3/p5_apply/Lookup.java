@@ -13,9 +13,6 @@ import java.util.TreeMap;
  */
 public class Lookup {
     public static void main(String[] args) {
-        /* ~ java Lookup ip.csv 0 1
-         运行Lookup 输入文件为ip.csv，键为第0列，值为第1列
-        */
         //文件路径为：/Users/wangxiaobin/IdeaProjects/Algorithms/hosts.txt
         if (args.length < 3){
             throw new IllegalArgumentException();
@@ -25,7 +22,8 @@ public class Lookup {
         int keyField = Integer.parseInt(args[1]);
         int valField = Integer.parseInt(args[2]);
 
-        TreeMap<String, Queue<String>> st = new TreeMap<>();
+        TreeMap<String, Queue<String>> st = new TreeMap<>();    // 正向索引key->val(s)
+        TreeMap<String, Queue<String>> ts = new TreeMap<>();    // 反向索引val->key(s)
         // 循环读取，并建立符号表
         while (in.hasNextLine()) {
             String line = in.readLine();
@@ -37,34 +35,43 @@ public class Lookup {
                 // 去除空行
                 continue;
             }
+
             String[] token = line.split(sep);
             String key = token[keyField];
             String val = token[valField];
 
-            if (st.containsKey(key)) {
-                // 如果符号表中包含了key，则在key对应的valQueue中再加一个val
-                st.get(key).add(val);
+            if (!st.containsKey(key)) {
+                // st中不包含key
+                st.put(key,new PriorityQueue<>());
             }
-            else {
-                // 符号表中不包含key
-                Queue<String> valQueue = new PriorityQueue<>();
-                valQueue.add(val);
-                st.put(key,valQueue);
+            if (!ts.containsKey(val)) {
+                // ts中不包含val键
+                ts.put(val,new PriorityQueue<>());
             }
+            st.get(key).add(val);
+            ts.get(val).add(key);
         }
          //读入需要查找的键，并输入对应的值
         while (!StdIn.isEmpty()) {
             String query = StdIn.readString();
             if (st.containsKey(query))
             {
+                Queue<String> q = st.get(query);//for debug
                 for (String val:st.get(query)
                      ) {
-                    System.out.println(st.get(query));
+                    System.out.println(" "+val);
                 }
             }
-            else
+            if (ts.containsKey(query)) {
+                for (String key:ts.get(query)
+                     ) {
+                    System.out.println(" "+key);
+                }
+            }
+            else if (!st.containsKey(query))
             {
-                System.out.println("文件中没有以"+query+"的键");
+                // ts和st中都没有query,注意这里的else if 和就近的if配对
+                System.out.println("文件中没有"+query);
             }
         }
 
