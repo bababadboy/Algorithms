@@ -62,18 +62,18 @@ public class Graph {
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder s = new StringBuilder();
         for (int i = 0; i < adj.size(); i++) {
-            stringBuilder.append(i);
-            stringBuilder.append(":");
+            s.append(i);
+            s.append(":");
             for (int w:adj.get(i)
                  ) {
-                stringBuilder.append(w);
-                stringBuilder.append(" ");
+                s.append(w);
+                s.append(" ");
             }
-            stringBuilder.append("\n");
+            s.append("\n");
         }
-        return stringBuilder.toString();
+        return s.toString();
     }
 
     public static void main(String[] args) {
