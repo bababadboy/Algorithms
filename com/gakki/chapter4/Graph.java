@@ -5,13 +5,14 @@ import edu.princeton.cs.algs4.In;
 import java.util.*;
 
 /**
- * 无向图实现
+ * 无向图的邻接表实现
  * @author wangxiaobin
  */
 public class Graph {
     private int V;  // 顶点个数 Vertex
     private int E;  // 边个数  Edge
-    private List<List<Integer>> adj;  // 邻接表  Adjacent List
+//    private List<List<Integer>> adj;  // 邻接表  Adjacent List
+    private List<Integer>[] adj;  // 邻接表  Adjacent List
 
     /**
      * 构造节点数为V的图，边数为0
@@ -20,10 +21,9 @@ public class Graph {
     public Graph(int V){
         this.V = V;
         this.E = 0;
-        adj = new ArrayList<>(V);
-        for (List l:adj
-             ) {
-            l = new LinkedList();
+        adj = (List<Integer>[]) new List[V];    // 不能创建泛型数组
+        for (int v = 0; v < V; v++) {
+            adj[v] = new LinkedList<>();
         }
     }
 
@@ -51,22 +51,22 @@ public class Graph {
     }
     // 在顶点v和w之间添加一条边
     public void addEdge(int v, int w){
-        adj.get(v).add(w);  // v的邻接表加上w
-        adj.get(w).add(v);  // w的邻接表加上v
+        adj[v].add(w);  // v的邻接表加上w
+        adj[w].add(v);  // w的邻接表加上v
         E++;
     }
     // 遍历与顶点v相邻的顶点
     public Iterable<Integer> adj(int v){
-        return adj.get(v);
+        return adj[v];
     }
 
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (int i = 0; i < adj.size(); i++) {
+        for (int i = 0; i < adj.length; i++) {
             s.append(i);
             s.append(":");
-            for (int w:adj.get(i)
+            for (int w:adj[i]
                  ) {
                 s.append(w);
                 s.append(" ");

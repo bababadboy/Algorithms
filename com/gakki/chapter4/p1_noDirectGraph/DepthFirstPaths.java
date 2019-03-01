@@ -8,7 +8,7 @@ import java.util.Stack;
  * 图深度优先搜索路径
  * @author wangxiaobin
  */
-public class DeptFirstPaths {
+public class DepthFirstPaths {
     private boolean[] marked;   // If the vertex is marked
     private int[] edgeTo;   // 记录路径的最后一个节点
     private final int s;
@@ -17,7 +17,7 @@ public class DeptFirstPaths {
      * @param G 图G
      * @param s 顶点s
      */
-    public  DeptFirstPaths(Graph G, int s) {
+    public DepthFirstPaths(Graph G, int s) {
         marked = new boolean[G.V()];
         edgeTo = new int[G.V()];
         this.s = s;
@@ -60,6 +60,19 @@ public class DeptFirstPaths {
         }
         stack.push(s);
         return stack;
+    }
+    public static void main(String[] args){
+        Graph G = new Graph(6);
+        G.addEdge(0,1);
+        G.addEdge(0,2);
+        G.addEdge(0,5);
+        G.addEdge(1,2);
+        G.addEdge(2,3);
+        G.addEdge(2,4);
+        G.addEdge(3,4);
+        G.addEdge(3,5);
+        System.out.println(G.toString());
+
     }
 }
 
