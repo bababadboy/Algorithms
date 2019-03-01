@@ -1,6 +1,8 @@
 package com.gakki.chapter4.p1_noDirectGraph;
 
 import com.gakki.chapter4.Graph;
+import edu.princeton.cs.algs4.StdOut;
+
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
@@ -63,5 +65,35 @@ public class BreadthFirstPaths {
      */
     public boolean hasPathTo(int w){
         return marked[w];
+    }
+
+    public static void main(String[] args) {
+        Graph G = new Graph(6);
+        G.addEdge(0,1);
+        G.addEdge(0,2);
+        G.addEdge(0,5);
+        G.addEdge(1,2);
+        G.addEdge(2,3);
+        G.addEdge(2,4);
+        G.addEdge(3,4);
+        G.addEdge(3,5);
+
+        int start = 5;
+        BreadthFirstPaths search = new BreadthFirstPaths(G,start);
+
+        // 打印所有和start相连的路径
+        for (int v = 0; v < G.V(); v ++) {
+            StdOut.print(start+" to "+v+":");
+            if (search.hasPathTo(v)) {
+                for (int w : search.pathTo(v)) {
+                    if (start == w)
+                        continue;
+                    else
+                        StdOut.print(w+" - ");
+                }
+
+            }
+            StdOut.println(start);
+        }
     }
 }
