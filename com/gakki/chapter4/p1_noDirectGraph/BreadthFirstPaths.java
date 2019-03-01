@@ -3,6 +3,7 @@ package com.gakki.chapter4.p1_noDirectGraph;
 import com.gakki.chapter4.Graph;
 import edu.princeton.cs.algs4.StdOut;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Stack;
@@ -26,16 +27,16 @@ public class BreadthFirstPaths {
     }
 
     private void bfs(Graph G, int s) {
-        Queue<Integer> queue = new PriorityQueue<>();
+        Queue<Integer> queue = new LinkedList<>();  // linkedlist实现了queue
         marked[s] = true;
-        queue.add(s);
+        queue.offer(s); //
         while (!queue.isEmpty()) {
             int x = queue.poll();
             for (int w: G.adj(x)) {
                 if (!marked[w]) {
                     edgeTo[w] = x;  // 把x作为w的前置节点
                     marked[w] = true;
-                    queue.add(w);   // 把w加到队列
+                    queue.offer(w);   // 把w加到队列
                 }
             }
         }
@@ -80,7 +81,6 @@ public class BreadthFirstPaths {
 
         int start = 5;
         BreadthFirstPaths search = new BreadthFirstPaths(G,start);
-
         // 打印所有和start相连的路径
         for (int v = 0; v < G.V(); v ++) {
             StdOut.print(start+" to "+v+":");
