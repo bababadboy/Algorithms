@@ -1,6 +1,7 @@
 package com.gakki.chapter4.p1_noDirectGraph;
 
 import com.gakki.chapter4.Graph;
+import edu.princeton.cs.algs4.StdOut;
 
 import java.util.Stack;
 
@@ -35,9 +36,9 @@ public class DepthFirstPaths {
     private void dfs(Graph G, int s) {
         marked[s] = true;
         for(int w:G.adj(s)) {
-            if (hasPathTo(s))
+            if (!marked[w])  // 如果没有被标记过
             {
-                edgeTo[w] = s;  // 把w作为s的上一个顶点
+                edgeTo[w] = s;  // 把s作为w的上一个顶点
                 dfs(G,w);       // 继续冲w开始深度递归
             }
         }
@@ -62,6 +63,7 @@ public class DepthFirstPaths {
         return stack;
     }
     public static void main(String[] args){
+        // 创建一个6个节点,8条边的图
         Graph G = new Graph(6);
         G.addEdge(0,1);
         G.addEdge(0,2);
@@ -71,8 +73,25 @@ public class DepthFirstPaths {
         G.addEdge(2,4);
         G.addEdge(3,4);
         G.addEdge(3,5);
-        System.out.println(G.toString());
+//        System.out.println(G.toString());
 
+        // 在G中创建一条以{@start}为开始的路径
+        int s = 0;
+        DepthFirstPaths search = new DepthFirstPaths(G,s);
+        // 遍历输出G中以start为开始的路径
+        for (int v = 0; v < G.V(); v ++) {
+            StdOut.print(s+" to "+v+":");
+            if (search.hasPathTo(v)) {
+                for (int w : search.path(v)) {
+                    if (s == w)
+                        StdOut.println(s);
+                    else
+                        StdOut.print(w+"-");
+                }
+
+            }
+            StdOut.println();
+        }
     }
 }
 
