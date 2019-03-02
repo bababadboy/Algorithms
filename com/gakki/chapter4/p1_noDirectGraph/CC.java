@@ -7,23 +7,26 @@ import com.gakki.chapter4.Graph;
  * @author wangxiaobin
  */
 public class CC {
-    private int[] id;   // 连同分量id,[0...cc.count()-1]
+    private int[] id;   // 连通分量id
     private boolean[] marked;   // 是否被访问过
+    private int count;      // 连通分量数
     /**
      * 构造函数CC：查找图G中的所有连同分量
      * @param G 需要寻找连同分量的图
      */
     public CC(Graph G){
         marked = new boolean[G.V()];    // 初始化都未被访问过，置为false
-        id = new int[];
+        id = new int[G.V()];
+        count = 0;
         for (int v = 0; v < G.V(); v ++){
             if (!marked[v]){    // 寻找未被标记过的节点作为起点
                 dfs(G,v);
+                count ++;
             }
         }
     }
     private void dfs(Graph G, int s) {
-        id[s] = 0;
+        id[s] = count;
         marked[s] = true;
         for (int w : G.adj(s)) { // 遍历s节点的邻接节点
             if (!marked[w]) {
@@ -46,7 +49,7 @@ public class CC {
      * @return 连同分量数
      */
     public int count(){
-        return id.length;
+        return count;
     }
 
     /**
