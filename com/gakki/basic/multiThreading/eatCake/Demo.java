@@ -11,8 +11,8 @@ public class Demo {
         EatCake e2 = new EatCake(cake,"ggg");
         EatCake e3 = new EatCake(cake,"ant");
 
-        e1.run();
-        e2.run();
-        e3.run();
+        e1.start();
+        e2.start();
+        e3.start();
     }
 }
