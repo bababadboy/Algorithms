@@ -6,6 +6,36 @@ import java.util.HashMap;
  * @author wangxiaobin
  */
 public class StringSolution {
+    public static void main(String[] args) {
+        String txt = "abcaaab";
+        String pat = "aab";
+        System.out.println("匹配的位置是："+search(pat,txt));
+    }
+
+    /**
+     * 暴力搜索在txt中是否存在pat
+     * @param pat 模式
+     * @param txt 文本
+     * @return pat在txt中的位置，不存在则返回-1
+     */
+    public static int search(String pat, String txt){
+        int M = pat.length();
+        int N = txt.length();
+
+        for (int i = 0; i < N; i ++){
+            int j;
+            for (j = 0; j < M; j ++){
+                if (pat.charAt(j) != txt.charAt(i+j)){
+                    break;
+                }
+            }
+            if (j == M){
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
     /**
      * 寻找最长无重复子串长度
