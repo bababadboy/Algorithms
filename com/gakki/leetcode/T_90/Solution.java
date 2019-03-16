@@ -1,6 +1,7 @@
 package com.gakki.leetcode.T_90;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -41,10 +42,21 @@ public class Solution {
         for (List<Integer> list :
                 outList) {
             // 只要大小相同并且互相包含就相同（排除顺序因素）
-            if (list.size() == inList.size() && list.containsAll(inList) && inList.containsAll(list)){
-                return true;
+            Collections.sort(list);
+            Collections.sort(inList);
+            boolean equals = true;
+            if (list.size() != inList.size())
+                equals = false;
+            for (int i = 0; i < list.size(); i++) {
+                if (!list.get(i).equals(inList.get(i))){
+                    equals = false;
+                    break;
+                }
             }
+            if (equals)
+                return true;
         }
+
         return false;
     }
 }
