@@ -5,6 +5,6 @@ package com.gakki.basic.classLoadSample;
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println(B.value);
+        A[] as = new A[10];
     }
 }
