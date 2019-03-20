@@ -4,7 +4,7 @@ package com.gakki.basic.syncThread;
  * @author wangxiaobin
  */
 public class Bank implements Runnable{
-    int money;
+    private int  money;
 
     public Bank(int money) {
         this.money = money;
@@ -46,6 +46,7 @@ public class Bank implements Runnable{
             e.printStackTrace();
         }
     }
+    // synchronized 修饰符可以让该线程 保证不被中断的情况下完成。
     private synchronized void operateWithdraw(int n){
         withdraw(n);
         System.out.println("Withdraw $"+n+", now money is: "+getMoney()+", have a break.");
@@ -59,7 +60,7 @@ public class Bank implements Runnable{
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         if (Thread.currentThread().getName().equals("SAVE")) {
             operateSave(100);
         }
