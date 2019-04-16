@@ -13,7 +13,7 @@ public class MaxSum {
     }
 
     /**
-     * dp实现
+     * dp实现，用数组存储递归的中间过程（空间换时间）
      */
     private static int dpOpt(int[] arr){
         // todo

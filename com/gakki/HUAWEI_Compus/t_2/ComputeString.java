@@ -1,7 +1,6 @@
 package com.gakki.HUAWEI_Compus.t_2;
 
 import com.gakki.chapter1.Stack;
-import edu.princeton.cs.algs4.In;
 
 /**
  * 利用 ( 2 + ( 4 * 5) * (2 *3))思想，构造vals和ops栈

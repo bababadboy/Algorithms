@@ -1,24 +1,24 @@
 package com.gakki;
 
-import com.gakki.chapter2.p4_prioQue.MaxPQ;
+import java.util.*;
 
 public class Main {
-
     public static void main(String[] args) {
-        int size = 10;
-        MaxPQ<Integer> maxPQ = new MaxPQ<>();
-        for (int i = 0; i < size; i++) {
-            maxPQ.insert(i);
-        }
-        maxPQ.print();
-
-        for (int i = 0; i < size; i++) {
-            System.out.print(maxPQ.delMax() + "\t");
+        Scanner sc = new Scanner(System.in);
+        sc.hasNextLine();
+        while(sc.hasNext()){
+            int a = sc.nextInt();
+            int b = sc.nextInt();
+            System.out.println(a+b);
         }
 
-        /* 传入数组的构造函数 */
-        String[] strings = new String[]{"AI", "Lebron", "WANG", "JIM", "Stephen", "Rose"};
-        MaxPQ<String> maxPQ1 = new MaxPQ<>(strings);
-        maxPQ1.print();
+        Map map =new HashMap();
+        LinkedList<String> l = new LinkedList<>();
+        Object o = l.poll();
+        for (String s:
+             l) {
+        }
+
     }
+
 }

@@ -22,7 +22,7 @@ public class ThreeSumFast {
         return cnt;
     }
     public static void main(String[] args) {
-        int[] a = new int[]{1,2,-3,4,0,-1,-4};
+        int[] a = new int[]{-1,0,1,2,-1,-4};
         System.out.println(count(a));
     }
 }

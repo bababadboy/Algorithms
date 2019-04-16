@@ -14,7 +14,7 @@ import java.util.Stack;
  */
 public class BreadthFirstPaths {
     private final int s;  // 初始节点
-    private int[] edgeTo;   // 保存上一个节点
+    private int[] edgeTo;   // 保存上一个节点，parent
     private boolean marked[];   // 标记数组，标记是否被访问过
 
     public BreadthFirstPaths(Graph G,int s) {
@@ -83,7 +83,7 @@ public class BreadthFirstPaths {
         BreadthFirstPaths search = new BreadthFirstPaths(G,start);
         // 打印所有和start相连的路径
         for (int v = 0; v < G.V(); v ++) {
-            StdOut.print(start+" to "+v+":");
+            StdOut.print(v+" to "+start+":");
             if (search.hasPathTo(v)) {
                 for (int w : search.pathTo(v)) {
                     if (start == w)
