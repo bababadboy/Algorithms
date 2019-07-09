@@ -6,12 +6,13 @@ import edu.princeton.cs.algs4.In;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.function.Consumer;
 
 /**
  * 顺序查找（基于无序链表）
  * @author wangxiaobin
  */
-public class SequentialSearchST<Key extends Comparable<Key>,Value> {
+public class SequentialSearchST<Key extends Comparable<Key>,Value> implements Iterable {
     private Node head;  // 第一个节点
     private int length;
 
@@ -19,11 +20,33 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value> {
         Key key;
         Value val;
         Node next;
+
+        public Value getVal() {
+            return val;
+        }
     }
 
     public SequentialSearchST() {
         head = null;
         length = 0;
+    }
+
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator() {
+            Node p = head;
+            @Override
+            public boolean hasNext() {
+                return p.next ==null;
+            }
+
+            @Override
+            public Object next() {
+                p = p.next;
+                return p;
+            }
+        };
     }
 
     public int size() {
@@ -141,23 +164,26 @@ public class SequentialSearchST<Key extends Comparable<Key>,Value> {
         SequentialSearchST<String,Integer> st = new SequentialSearchST<>();
         st.put("a",1);
         st.print();
-//        st.put("b",2);
+        st.put("b",2);
 //        st.print();
-//        st.put("c",3);
+        st.put("c",3);
 //        st.print();
 //
-//        st.put("b",4);
+        st.put("b",4);
 //        st.print();
 
 //        st.delete("a");
 //        st.print();
 
-        st.delete("a");
+//        st.delete("a");
         st.print();
 //
 //        st.delete("b");
 //        st.print();
-
+        Iterator it = st.iterator();
+        while (it.hasNext()){
+            System.out.println(it.next());
+        }
 
     }
 

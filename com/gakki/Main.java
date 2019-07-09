@@ -4,21 +4,13 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        sc.hasNextLine();
-        while(sc.hasNext()){
-            int a = sc.nextInt();
-            int b = sc.nextInt();
-            System.out.println(a+b);
+        for (int i = 0; i < 100; i++) {
+            System.out.println("This is No."+i);
         }
 
-        Map map =new HashMap();
-        LinkedList<String> l = new LinkedList<>();
-        Object o = l.poll();
-        for (String s:
-             l) {
-        }
-
+        String s = null;
+        System.out.println("sss");
+        System.out.println(s.length());
     }
 
 }

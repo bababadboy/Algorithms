@@ -44,6 +44,7 @@ public class StringSolution {
      */
     public static int lengthOfLongestSubstring(String s){
         int len = 0;
+        // head是最长无重复子串的起始位置
         int head = 0;
         HashMap<Character,Integer> hashMap = new HashMap<>(); // <字符，位置>
 

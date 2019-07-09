@@ -15,6 +15,14 @@ public class Main {
         System.out.println(m.operate(3,4,(a,b) -> a-b));
         System.out.println(m.operate(3,4,(a,b) -> a*b));
 
+        // 使用匿名类
+        System.out.println(m.operate(3, 4, new MathOperation() {
+            @Override
+            public int operation(int a, int b) {
+                return a+b;
+            }
+        }));
+
     }
     interface MathOperation{
         int operation(int a, int b);
