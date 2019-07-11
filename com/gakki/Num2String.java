@@ -8,8 +8,10 @@ package com.gakki;
 public class Num2String {
 
     static String[] CHN_NUMBER = {"零", "一", "二", "三", "四", "五", "六", "七", "八", "九"};
-    static String[] CHN_UNIT = {"", "十", "百", "千"};          //权位
-    static String[] CHN_UNIT_SECTION = {"", "万", "亿", "万亿"}; //节权位
+    static String[] CHN_UNIT = {"", "十", "百", "千","万"};          //单位
+
+    //    static String[] CHN_UNIT = {"", "十", "百", "千"};          //权位
+    //    static String[] CHN_UNIT_SECTION = {"", "万", "亿", "万亿"}; //节权位
     private String n;   // 阿拉伯数字
 
     public Num2String(String s) {
@@ -50,21 +52,35 @@ public class Num2String {
     private String filterLeft(String l) {
 
         int lLen = l.length();
-        StringBuilder sb = new StringBuilder();
-
+        String res = null;
 
         if (lLen <= 4){ // 到千位，即四位数
-            for (int i = 0; i < lLen; i++) {
-                if (i == lLen -1 && "0".equals(String.valueOf(l.charAt(i)))){
-                    break;
-                }
-                sb.append(CHN_NUMBER[Integer.parseInt(String.valueOf(l.charAt(i)))]);
-                if (l.charAt(i) != '0'){    // bug:201 => 两百零十一
-                    sb.append(CHN_UNIT[lLen -1 - i]);
-                }
-            }
+            res = qian(l);
+        }else if (lLen <= 8 ){
+            // 提取万位及以上的位
+            String wanAbove  = qian(l.substring(0,lLen - 4));
+            String wanBlow = qian(l.substring(lLen-4));
+            res = wanAbove + "万"+ wanBlow;
         }
 
+        return res;
+    }
+
+    /**
+     * 千位大写中文
+     */
+    private String qian(String l) {
+        int lLen = l.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < lLen; i++) {
+            if (i == lLen -1 && "0".equals(String.valueOf(l.charAt(i)))){
+                break;
+            }
+            sb.append(CHN_NUMBER[Integer.parseInt(String.valueOf(l.charAt(i)))]);
+            if (l.charAt(i) != '0'){    // bug:201 => 两百零十一
+                sb.append(CHN_UNIT[lLen -1 - i]);
+            }
+        }
         return sb.toString();
     }
 
@@ -74,7 +90,13 @@ public class Num2String {
         String n = "201.00";
         Num2String num2String = new Num2String(n);
         System.out.println(n+"=>"+num2String.toZh());
-        double n2 = 2010.99;
+        double n2 = 3101.99;
         System.out.println(n2+"=>"+new Num2String(n2).toZh());
+
+        String n3 = "21399101.99";
+        System.out.println(n3+"=>"+new Num2String(n3).toZh());
+
+        String n4 = "20000001.99";
+        System.out.println(n4+"=>"+new Num2String(n4).toZh());
     }
 }
