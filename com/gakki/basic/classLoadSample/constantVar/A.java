@@ -8,6 +8,6 @@ public class A {
     public static int a = 233;
     public static final int CONSTANT = 233;
     static {
-        System.out.println("Hello I am A.");
+        System.out.println("Hello I am BaseA.");
     }
 }

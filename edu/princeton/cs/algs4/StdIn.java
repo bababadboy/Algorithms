@@ -64,7 +64,7 @@ import java.util.regex.Pattern;
  *  <p>
  *  <em>Whitespace</em> includes spaces, tabs, and newlines; the full definition
  *  is inherited from {@link Character#isWhitespace(char)}.
- *  A <em>token</em> is a maximal sequence of non-whitespace characters.
+ *  BaseA <em>token</em> is a maximal sequence of non-whitespace characters.
  *  The precise rules for describing which tokens can be converted to
  *  integers and floating-point numbers are inherited from
  *  <a href = "http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html#number-syntax">Scanner</a>,
@@ -114,7 +114,7 @@ import java.util.regex.Pattern;
  *  the next line of input on standard input (possibly whitespace),
  *  discarding the trailing line separator.
  *  <p>
- *  A <em>line separator</em> is defined to be one of the following strings:
+ *  BaseA <em>line separator</em> is defined to be one of the following strings:
  *  {@code \n} (Linux), {@code \r} (old Macintosh),
  *  {@code \r\n} (Windows),
  *  {@code \}{@code u2028}, {@code \}{@code u2029}, or {@code \}{@code u0085}.
@@ -688,7 +688,7 @@ public final class StdIn {
  *
  *  algs4.jar is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  MERCHANTABILITY or FITNESS FOR BaseA PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License

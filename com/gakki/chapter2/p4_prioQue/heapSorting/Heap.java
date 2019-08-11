@@ -44,7 +44,7 @@ public class Heap {
         }
     }
     public static void main(String[] args) {
-        String s[] = {"H","E","A","P","S","O","R","T","E","X","A","M","P","L","E"};
+        String s[] = {"H","E","BaseA","P","S","O","R","T","E","X","BaseA","M","P","L","E"};
         sort(s);
         print(s);
     }

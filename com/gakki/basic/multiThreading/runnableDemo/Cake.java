@@ -1,4 +1,4 @@
-package com.gakki.basic.runnableDemo;
+package com.gakki.basic.multiThreading.runnableDemo;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.gakki.basic.multiThreading.eatCake;
+package com.gakki.basic.multiThreading.threadDemo.eatCake;
 
 /**
  * @author wangxiaobin

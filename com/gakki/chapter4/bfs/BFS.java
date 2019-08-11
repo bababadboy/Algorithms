@@ -7,7 +7,7 @@ import java.util.*;
 public class BFS {
     public static void main(String[] args) {
         G g = new G();
-        Node A = new Node("A");
+        Node A = new Node("BaseA");
         Node B = new Node("B");
         Node C = new Node("C");
         Node D = new Node("D");
@@ -47,7 +47,7 @@ public class BFS {
         }
         System.out.println();
 
-        // A 到 E 的最短距离
+        // BaseA 到 E 的最短距离
         Node to = E;
         Stack<String> stack = new Stack<>();
         stack.push(to.getName());

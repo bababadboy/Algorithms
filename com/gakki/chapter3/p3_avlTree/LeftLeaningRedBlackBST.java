@@ -228,7 +228,7 @@ public class LeftLeaningRedBlackBST<Key extends Comparable<Key>,Value> {
         LeftLeaningRedBlackBST<String ,Integer> bst = new LeftLeaningRedBlackBST<>();
         bst.put("M",1);
         bst.put("F",2);
-        bst.put("A",3);
+        bst.put("BaseA",3);
         bst.put("S",4);
 
         System.out.println(bst.getMax());

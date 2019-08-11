@@ -43,7 +43,7 @@ public class Merge {
     }
 
     public static void main(String[] args) {
-        String s[] = {"M","E","R","G","E","S","O","R","T","E","X","A","M","P","L","E"};
+        String s[] = {"M","E","R","G","E","S","O","R","T","E","X","BaseA","M","P","L","E"};
         sort(s);
         print(s);
     }

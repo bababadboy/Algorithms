@@ -6,6 +6,6 @@ package com.gakki.basic.classLoadSample;
  */
 public class A {
     static {
-        System.out.println("Hello I am A.");
+        System.out.println("Hello I am BaseA.");
     }
 }

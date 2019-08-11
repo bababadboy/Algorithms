@@ -24,7 +24,7 @@ public class Shell {
     }
 
     public static void main(String[] args) {
-        String s[] = {"S","H","E","L","L","S","O","R","T","E","X","A","M","P","L","E"};
+        String s[] = {"S","H","E","L","L","S","O","R","T","E","X","BaseA","M","P","L","E"};
         sort(s);
         print(s);
     }

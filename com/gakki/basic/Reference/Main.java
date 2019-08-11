@@ -5,6 +5,7 @@ import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 
 /**
+ * 这是啥东西？？？下次能不能写个注释？？？
  * @author wangxiaobin
  */
 public class Main {

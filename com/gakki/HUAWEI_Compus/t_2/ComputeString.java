@@ -34,7 +34,7 @@ public class ComputeString {
                 int n = Integer.parseInt(str);
                 nums.push(n);
             }
-            else if (str.compareTo("A") >=0 && str.compareTo("z") <= 0){
+            else if (str.compareTo("BaseA") >=0 && str.compareTo("z") <= 0){
                 // str 是大小写字母
                 vals.push(str);
             }

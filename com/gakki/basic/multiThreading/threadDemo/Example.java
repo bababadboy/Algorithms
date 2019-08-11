@@ -1,4 +1,4 @@
-package com.gakki.basic.multiThreading;
+package com.gakki.basic.multiThreading.threadDemo;
 
 /**
  * @author wangxiaobin

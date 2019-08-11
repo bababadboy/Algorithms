@@ -1,6 +1,4 @@
-package com.gakki.basic.runnableDemo;
-
-import java.awt.*;
+package com.gakki.basic.multiThreading.runnableDemo;
 
 /**
  * @author wangxiaobin

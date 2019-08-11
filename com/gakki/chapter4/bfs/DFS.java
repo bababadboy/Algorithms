@@ -8,7 +8,7 @@ import java.util.*;
 public class DFS {
     public static void main(String[] args) {
         G g = new G();
-        Node A = new Node("A");
+        Node A = new Node("BaseA");
         Node B = new Node("B");
         Node C = new Node("C");
         Node D = new Node("D");

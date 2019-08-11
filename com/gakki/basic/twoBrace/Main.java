@@ -8,7 +8,7 @@
 ///**
 // * @author wangxiaobin
 // */
-//public class Main {
+//public class LazyMain {
 //    private static final Set<String> stringSet = new HashSet<>(){{
 //       add("I");
 //       add("am");

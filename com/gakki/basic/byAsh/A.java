@@ -23,10 +23,10 @@ public class A extends B {
         System.out.println("The initial value of a is " + a);
     }
     public static void fun(){
-        System.out.println("The is a function from A.");
+        System.out.println("The is a function from BaseA.");
     }
     public A() {
-        System.out.println("This is A, over.");
+        System.out.println("This is BaseA, over.");
     }
 
     public static void main(String[] args) {
