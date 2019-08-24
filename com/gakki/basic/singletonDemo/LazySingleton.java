@@ -21,7 +21,7 @@ public class LazySingleton {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1000; i++) {
             // 使用多个线程访问，会出现执行多次构造函数的方法！！
             new Thread("T"+i){
                 @Override

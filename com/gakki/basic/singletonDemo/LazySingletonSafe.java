@@ -23,7 +23,8 @@ public class LazySingletonSafe {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10000; i++) {
+        long start = System.currentTimeMillis();
+        for (int i = 0; i < 100000; i++) {
             new Thread("T"+i){
                 @Override
                 public void run() {
@@ -31,5 +32,7 @@ public class LazySingletonSafe {
                 }
             }.start();
         }
+
+        System.out.println(System.currentTimeMillis() - start);
     }
 }
