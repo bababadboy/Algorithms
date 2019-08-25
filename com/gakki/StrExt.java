@@ -17,6 +17,7 @@ public class StrExt {
     public static void main(String[] args) {
 
         String ts = "aaaa((bc)3d)2";
+        // 思路：利用两个栈
         System.out.println(strExt(ts));
     }
 
