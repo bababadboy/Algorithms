@@ -48,7 +48,6 @@ public class Main {
 //        String sss = "厸";
 //        System.out.println(sss.length());
 
-
         double d = 0.0;
         for (int i = 0; i < 10; i++) {
             d = d + 0.1;

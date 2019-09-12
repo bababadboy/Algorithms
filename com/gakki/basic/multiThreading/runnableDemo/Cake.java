@@ -6,6 +6,9 @@ package com.gakki.basic.multiThreading.runnableDemo;
  * @author wangxiaobin
  */
 public class Cake implements Runnable{
+    ThreadLocal<Integer> threadLocal = new ThreadLocal<>();
+
+
     int size;
 
     public Cake(int size) {
