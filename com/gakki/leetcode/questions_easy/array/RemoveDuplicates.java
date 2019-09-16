@@ -8,11 +8,34 @@ package com.gakki.leetcode.questions_easy.array;
 public class RemoveDuplicates {
 
     public static void main(String[] args) {
-        int[] a = {1,1};
+        int[] a = {0,0,1,1,1,2,2,3,3,4};
         int len = removeDuplicates(a);
         for (int i = 0; i < len; i++) {
             System.out.print(a[i] + "\t");
         }
+        System.out.println();
+        int[] b = {0,0,1,1,1,2,2,3,3,4};
+        int len2 = removeDuplicates2(b);
+        for (int i = 0; i < len2; i++) {
+            System.out.print(b[i] + "\t");
+        }
+    }
+
+    public static int removeDuplicates2(int[] nums) {
+        if (nums.length == 1){
+            return 1;
+        }
+        if (nums.length == 0){
+            return 0;
+        }
+        int record = 1;     // 不重复的长度
+        for (int i = 0,j = i + 1; j < nums.length; i++,j++) {
+            if (nums[i] != nums[j]){
+                nums[record] = nums[j];
+                record ++;
+            }
+        }
+        return record;
     }
 
     public static int removeDuplicates(int[] nums) {

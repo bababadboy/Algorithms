@@ -42,12 +42,21 @@ public class MaxProfit {
     /**
      * 动态规划思想
      */
-
+    public int maxProf(int[] prices) {
+        int min = prices[0];
+        int max = 0;    // max profit
+        for (int i = 1; i < prices.length; i++) {
+            max = Math.max(max,prices[i]-min);
+            min = Math.min(min,prices[i]);
+        }
+        return  max;
+    }
 
     public static void main(String[] args) {
-//        int[] arr = new int[]{7,1,5,3,6,4};
-        int[] arr = new int[]{7,6,4,3,1};
+        int[] arr = new int[]{7,1,5,3,6,4};
+//        int[] arr = new int[]{7,6,4,3,1};
 
         System.out.println(new MaxProfit().maxProfit(arr));
+        System.out.println(new MaxProfit().maxProf(arr));
     }
 }
