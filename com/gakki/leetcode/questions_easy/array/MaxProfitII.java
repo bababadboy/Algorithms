@@ -1,8 +1,6 @@
 package com.gakki.leetcode.questions_easy.array;
 
-import com.gakki.leetcode.questions_easy.dp.MaxProfit;
 
-import java.util.LinkedHashMap;
 
 /**
  * 给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。
@@ -34,5 +32,67 @@ import java.util.LinkedHashMap;
  * @date 2019-09-15
  */
 public class MaxProfitII {
+    /**
+     * 暴力循环，思路不对
+     */
+    public int maxProfitWrong(int[] prices) {
+        int val = 0;
+        int maxProf = 0;
 
+        for (int i = 0; i < prices.length; i++) {
+            for (int j = i + 1; j < prices.length; j++) {
+                if (prices[j] > prices[i]){
+
+                    val += Math.max(prices[j] - prices[i],maxProf); // j 买或者不买的最大值
+                    if (i < prices.length - 1){
+                        i ++;
+                    }
+                }
+            }
+            if (val > maxProf){
+                maxProf  = val;
+            }
+        }
+        return maxProf;
+    }
+
+    private static final int BUYED = 1;
+    private static final int NOTBUYED = 2;
+    private static final int SELLED = 3;
+    public int maxProfit(int[] prices) {
+
+        return maxPro(prices,0,1,NOTBUYED);
+    }
+
+    private int maxPro(int[] prices,int from, int sellmaybe, int status) {
+
+        while (sellmaybe < prices.length && prices[sellmaybe] < prices[from]){
+            sellmaybe ++;
+        }
+        if (sellmaybe == prices.length){
+            maxPro(prices,from+1,from+2,status);
+        }
+        if (sellmaybe > prices.length - 1 || from > prices.length - 2){
+            return 0;
+        }
+
+        if (status == SELLED){
+            int selled = prices[sellmaybe] - prices[from]+maxPro(prices,sellmaybe+1,sellmaybe+2,status);
+        }
+        if (status == BUYED){
+            // 买了->接下来可以卖，也可以不卖
+            maxPro(prices,from+1,sellmaybe+1,SELLED);    // 卖
+            int notselled = maxPro(prices,from,sellmaybe+1,BUYED);    // 不卖
+//            return Math.max(selled,notselled);
+        }
+
+        int buyed =  maxPro(prices,from,sellmaybe,BUYED);
+        int notbuyed =  maxPro(prices,from+1,sellmaybe,NOTBUYED);
+        return Math.max(buyed,notbuyed);
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new MaxProfitII().maxProfit(new int[]{7,1,5,3,6,4}));
+    }
 }
