@@ -19,7 +19,7 @@ public class NioBufferAndChannel {
         int byteRead = channel.read(buffer);
         while (byteRead != -1){
             System.out.println("Read "+byteRead);
-            // 把 position指针归零
+            // limit置位position,把 position指针归零
             buffer.flip();
             while (buffer.hasRemaining()){
                 System.out.print((char) buffer.get());

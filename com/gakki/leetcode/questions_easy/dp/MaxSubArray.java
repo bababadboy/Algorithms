@@ -37,10 +37,40 @@ public class MaxSubArray {
 
 
     /**
-     * todo
      * 动态规划思想
+     * 从头开始遍历数组。
      */
     public int maxSubArray(int[] nums) {
-       return 0;
+        if(nums.length == 0){
+            return 0;
+        }
+        if(nums.length == 1){
+            return nums[0];
+        }
+        int seq = nums[0];
+        int max = nums[0];
+        int i = 1;
+        // 从正数开始
+        for (; i < nums.length; i++) {
+            if (seq > 0){
+                seq += nums[i];
+            }else{
+                if (nums[i] > 0){
+                    seq = nums[i];
+                }else {
+                    seq = Math.max(seq,nums[i]);
+                }
+            }
+            max = Math.max(seq,max);
+        }
+        return max;
+    }
+
+
+    public static void main(String[] args) {
+        int a = new MaxSubArray().maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4});
+        int b = new MaxSubArray().maxSubArray(new int[]{1,-1,1});
+        System.out.println(a);
+        System.out.println(b);
     }
 }

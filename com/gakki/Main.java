@@ -1,5 +1,7 @@
 package com.gakki;
 
+import edu.princeton.cs.algs4.In;
+
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
@@ -48,13 +50,15 @@ public class Main {
 //        String sss = "厸";
 //        System.out.println(sss.length());
 
-        double d = 0.0;
-        for (int i = 0; i < 10; i++) {
-            d = d + 0.1;
-            BigDecimal bigDecimal = new BigDecimal(d);
-            String s = bigDecimal.toString();
-            System.out.println(s);
-        }
-    }
 
+
+        Integer a = 127;
+        Integer b = 127;    // Integer 有Integer.cache缓存
+        System.out.println(a == b);
+
+        Integer c = 128;
+        Integer d = 128;
+        Integer.parseInt("+434");
+        System.out.println(c == d);
+    }
 }
